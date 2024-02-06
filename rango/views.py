@@ -9,24 +9,10 @@ from datetime import datetime
 
 
 def index(request):
-    category_list = Category.objects.order_by('-likes')[:5] 
-    page_list = Page.objects.order_by('-views')[:5]
-
-    context_dict = {}
-    context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
-    context_dict['categories'] = category_list
-    context_dict['pages'] = page_list
-
-    visitor_cookie_handler(request)
-
-    return render(request, 'rango/index.html', context=context_dict) 
-
+    return HttpResponse("Rango says hey there partner! <a href='/rango/about/'>About</a>")
 
 def about(request):
-    context_dict = {}
-    visitor_cookie_handler(request)
-    context_dict['visits'] = request.session['visits']
-    return render(request, 'rango/about.html', context=context_dict)
+   return HttpResponse("Rango says here is the about page. <a href='/rango/'>Index</a>")
 
 def show_category(request, category_name_slug): 
     context_dict = {}
